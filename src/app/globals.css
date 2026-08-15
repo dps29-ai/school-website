@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: 28 49 80;
+    --color-fg: 219 198 192;
+    --color-accent: 205 170 128;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-beige-200 text-navy-900 font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-caramel-400 text-navy-900;
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-2 ring-caramel-400 ring-offset-2 ring-offset-beige-200;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+
+  /* Devanagari headings */
+  .devanagari {
+    @apply font-devanagari;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-prose {
+    @apply mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-caramel-400 px-6 py-3 text-sm font-medium tracking-wide text-navy-900 transition-all hover:bg-caramel-300 hover:shadow-lg active:scale-[0.98] focus-visible:ring-caramel-400;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-navy-900 bg-transparent px-6 py-3 text-sm font-medium tracking-wide text-navy-900 transition-all hover:bg-navy-900 hover:text-beige-200 active:scale-[0.98];
+  }
+
+  .btn-caramel {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-caramel-400 px-6 py-3 text-sm font-medium tracking-wide text-navy-900 transition-all hover:bg-caramel-300 hover:shadow-lg active:scale-[0.98];
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-beige-200 px-6 py-3 text-sm font-medium tracking-wide text-navy-900 transition-all hover:bg-beige-100 hover:shadow-lg active:scale-[0.98];
+  }
+
+  .heading-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-navy-400;
+  }
+
+  .heading-display {
+    @apply font-display text-4xl font-medium leading-[1.1] text-beige-200 sm:text-5xl lg:text-6xl;
+  }
+
+  .heading-section {
+    @apply font-display text-3xl font-medium leading-tight text-navy-900 sm:text-4xl lg:text-5xl;
+  }
+
+  .gold-divider {
+    @apply relative flex items-center justify-center;
+  }
+
+  .gold-divider::before,
+  .gold-divider::after {
+    content: '';
+    @apply h-px flex-1 bg-gradient-to-r from-transparent via-caramel-400 to-transparent;
+  }
+
+  .gold-divider > * {
+    @apply px-4;
+  }
+
+  .card {
+    @apply rounded-sm border border-navy-100 bg-beige-200 p-6 transition-all hover:border-caramel-400 hover:shadow-xl;
+  }
+
+  .card-dark {
+    @apply rounded-sm border border-navy-700 bg-navy-800 p-6 text-beige-200 transition-all hover:border-caramel-400;
+  }
+
+  .link-underline {
+    @apply relative inline-block;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply origin-left scale-x-100;
+  }
+
+  /* Ornament / filigree for premium feel */
+  .ornament {
+    @apply mx-auto my-8 flex max-w-md items-center gap-3;
+  }
+  .ornament::before,
+  .ornament::after {
+    content: '';
+    @apply h-px flex-1 bg-gradient-to-r from-transparent via-navy-300 to-transparent;
+  }
+  .ornament > svg {
+    @apply h-5 w-5 text-caramel-400;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .bg-paper {
+    background-color: #dbc6c0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(28, 49, 80, 0.04) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  .gold-text {
+    background: linear-gradient(135deg, #dbc6c0 0%, #cdaa80 50%, #dbc6c0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Skip link */
+.skip-link {
+  @apply absolute left-2 top-2 -translate-y-20 rounded-sm bg-navy-900 px-4 py-2 text-sm font-medium text-beige-200 transition-transform focus:translate-y-0 focus:outline-none focus:ring-2 focus:ring-caramel-400;
+  z-index: 100;
+}
+
+/* Print styles for fee & rules pages */
+@media print {
+  .no-print, header, footer, nav {
+    display: none !important;
+  }
+
+  body {
+    @apply bg-white text-black;
+  }
+
+  a {
+    @apply text-black no-underline;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+}
+
+.print-only {
+  display: none;
+}
